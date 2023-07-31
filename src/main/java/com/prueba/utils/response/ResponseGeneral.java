@@ -1,5 +1,6 @@
 package com.prueba.utils.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -47,5 +48,23 @@ public class ResponseGeneral {
 
 	public void setErrors(List<ResponseError> errors) {
 		this.errors = errors;
+	}
+	
+	public ResponseGeneral addError(ResponseError errors) {
+		if (this.errors == null) {
+			this.errors = new ArrayList<ResponseError>();
+		}
+		this.errors.add(errors);
+		this.message = null;
+		return this;
+	}
+
+	public ResponseGeneral addErrors(List<ResponseError> errors) {
+		if (this.errors == null) {
+			this.errors = new ArrayList<ResponseError>();
+		}
+		this.errors.addAll(errors);
+		this.message = null;
+		return this;
 	}
 }
